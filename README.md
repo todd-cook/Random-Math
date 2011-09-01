@@ -1,14 +1,14 @@
-Random Math
+Random-Math
 ============
 
-Random Math is a packaged collection of math functions for numerical methods,
+Random-Math is a packaged collection of math functions for numerical methods,
 random number generators, and statistical analysis. 
 
 
 Features
 --------
 
-Picomath provides the following functions:
+Random-Math provides the following functions:
 
 - [Error function](http://en.wikipedia.org/wiki/Error_function)
 - [Phi (standard normal CDF)](http://en.wikipedia.org/wiki/Cumulative_distribution_function)
@@ -21,7 +21,7 @@ Picomath provides the following functions:
 Random Number Generation:
 
 Mersenne Twister (Java)
-
+more to come...
 
 
 License
