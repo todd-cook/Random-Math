@@ -1,5 +1,6 @@
 package com.cookconsulting.randommath;
 
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 
 /**
@@ -8,12 +9,15 @@ import java.lang.reflect.Constructor;
  * Based on John D. Cook's SimpleRNG, see: http://www.codeproject.com/KB/recipes/SimpleRNG.aspx
  * see also:http://www.codeproject.com/KB/recipes/pitfalls_random_number.aspx
  * http://www.johndcook.com
+ * original code licensed under http://www.codeproject.com/info/cpol10.aspx
  *
- * @author Todd Cook
- * @author John D. Cook
+ * @author Todd Cook - Java port, refactoring as a Factory class, unit tests
+ * @author John D. Cook - inital C# version, named SimpleRNG
  * @since 8/21/11
  */
-public class RandomNumberFactory {
+public class RandomNumberFactory implements Serializable {
+
+    private static final long serialVersionUID = 8292679980257982877L;
 
     private RandomNumberGenerator randomNumberGenerator;
 

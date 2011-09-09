@@ -8,7 +8,8 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author Todd Cook
+ * @author Todd Cook - refactoring, documentation, maven integration
+ * @author Greg Hewgill - initial Java port
  * @since 8/5/11 11:57 PM
  */
 public class NormalCDFInverseTest {
@@ -34,6 +35,7 @@ public class NormalCDFInverseTest {
                                            0.999,
                                            0.99999,
                                            0.9999999);
+
         List<Double> results = Arrays.asList(-5.199337582187471,
                                              -4.264890793922602,
                                              -3.090232306167813,

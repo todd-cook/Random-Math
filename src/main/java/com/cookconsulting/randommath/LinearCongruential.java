@@ -1,5 +1,6 @@
 package com.cookconsulting.randommath;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -10,7 +11,9 @@ import java.util.Random;
  * @author Todd Cook
  * @since 9/4/11
  */
-public class LinearCongruential implements RandomNumberGenerator {
+public class LinearCongruential implements RandomNumberGenerator, Serializable {
+
+    private static final long serialVersionUID = 4044287744212583436L;
 
     private Random random = new Random();
 

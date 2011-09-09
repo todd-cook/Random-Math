@@ -10,9 +10,9 @@ package com.cookconsulting.randommath;
  * <p/>
  * Note that the functions Gamma and LogGamma are mutually dependent.
  *
- * @author Todd Cook
- * @author Greg Hewgill
- * @author John D Cook
+ * @author Todd Cook - refactoring, documentation
+ * @author Greg Hewgill - initial Java port
+ * @author John D Cook - original C# version
  * @since 8/21/11 10:16 PM
  */
 public class Gamma {

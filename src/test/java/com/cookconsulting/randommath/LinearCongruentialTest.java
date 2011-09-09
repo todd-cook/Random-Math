@@ -12,7 +12,6 @@ import org.junit.Test;
  * chapter 10 of Beautiful Testing by Tim Riley and Adam Goucher.
  *
  * @author Todd Cook
- * @author John D. Cook
  * @since 8/21/11 10:32 PM
  */
 

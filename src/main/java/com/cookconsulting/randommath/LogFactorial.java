@@ -4,9 +4,9 @@ package com.cookconsulting.randommath;
  * Compute the log of a factorial number: log (n!)
  * see: http://www.johndcook.com/blog/2010/08/16/how-to-compute-log-factorial/
  *
- * @author Todd Cook
- * @author Greg Hewgill
- * @author John D Cook
+ * @author Todd Cook - refactoring, unit tests, documentation
+ * @author Greg Hewgill - initial Java port
+ * @author John D Cook - original C# version
  * @since 8/21/11 10:16 PM
  */
 public class LogFactorial {

@@ -1,5 +1,7 @@
 package com.cookconsulting.randommath;
 
+import java.io.Serializable;
+
 /**
  * Utility class for efficiently calculating mean, variance and standard deviation from a
  * stream of numbers.
@@ -7,14 +9,20 @@ package com.cookconsulting.randommath;
  * see: http://www.johndcook.com/standard_deviation.html
  * See Donald Knuth's Art of Computer Programming, Vol 2, page 232, 3rd edition
  *
- * @author Todd Cook
- * @author John D. Cook
+ * @author Todd Cook - Java port
+ * @author John D. Cook - original C# code
  * @since 9/4/11
  */
 
-public class RunningStats {
-    int m_n;
-    double m_oldM, m_newM, m_oldS, m_newS;
+public class RunningStats implements Serializable {
+
+    private static final long serialVersionUID = 2278858881964145770L;
+
+    private long m_n;
+    private double m_oldM;
+    private double m_newM;
+    private double m_oldS;
+    private double m_newS;
 
     public RunningStats() {
         m_n = 0;
@@ -42,7 +50,7 @@ public class RunningStats {
         }
     }
 
-    public int numberDataValues() {
+    public long numberDataValues() {
         return m_n;
     }
 

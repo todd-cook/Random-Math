@@ -7,8 +7,8 @@ import static org.junit.Assert.assertTrue;
 /**
  * Test a range of values and operations that a Unsigned Integer should produce
  *
- * @author todd
- * @since 9/6/11 8:54 PM
+ * @author Todd Cook
+ * @since 9/4/11
  */
 public class UIntTest {
 

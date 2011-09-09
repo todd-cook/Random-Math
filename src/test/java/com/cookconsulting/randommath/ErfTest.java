@@ -1,9 +1,9 @@
 package com.cookconsulting.randommath;
 
 /**
- * @author Todd Cook
- * @since 8/5/11 11:57 PM
- *
+ * @author Todd Cook - refactoring, documentation, maven integration
+ * @author Greg Hewgill - initial Java port
+ * @since 8/5/11
  */
 
 import org.junit.Test;

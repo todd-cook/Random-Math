@@ -3,9 +3,9 @@ package com.cookconsulting.randommath;
 /**
  * one less than the exponential of x
  *
- * @author Todd Cook
- * @author Greg Hewgill
- * @author John D Cook
+ * @author Todd Cook - refactoring, unit tests, documentation
+ * @author Greg Hewgill - initial Java port
+ * @author John D Cook - original C# version
  * @since 8/21/11 10:16 PM
  */
 public class Expm1 {

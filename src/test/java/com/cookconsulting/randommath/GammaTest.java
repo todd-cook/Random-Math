@@ -8,8 +8,9 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author Todd Cook
- * @since 8/7/11 1:01 PM
+ * @author Todd Cook - refactoring, documentation, maven integration
+ * @author Greg Hewgill - initial Java port
+ * @since 8/7/11
  */
 public class GammaTest {
 

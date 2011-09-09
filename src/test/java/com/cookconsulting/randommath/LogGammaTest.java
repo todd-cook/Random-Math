@@ -8,8 +8,9 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author Todd Cook
- * @since 8/7/11 1:01 PM
+ * @author Todd Cook - refactoring, documentation, maven integration
+ * @author Greg Hewgill - initial Java port
+ * @since 8/7/11
  */
 public class LogGammaTest {
 
@@ -26,17 +27,15 @@ public class LogGammaTest {
                                            12.0001,
                                            27.4);
 
-        List<Double> results = Arrays.asList
-
-            (27.6310211159,
-             5.77297915613e-05,
-             -5.77133422205e-05,
-             0.787375083274,
-             5.30734288962,
-             17.5020635801,
-             17.5023078459,
-             17.5025521125,
-             62.5755868211);
+        List<Double> results = Arrays.asList(27.6310211159,
+                                             5.77297915613e-05,
+                                             -5.77133422205e-05,
+                                             0.787375083274,
+                                             5.30734288962,
+                                             17.5020635801,
+                                             17.5023078459,
+                                             17.5025521125,
+                                             62.5755868211);
 
         /**
          *  the actual java results yield:

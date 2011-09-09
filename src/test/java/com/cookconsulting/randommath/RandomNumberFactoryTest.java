@@ -3,6 +3,7 @@ package com.cookconsulting.randommath;
 import org.junit.Test;
 
 import java.util.Arrays;
+
 /**
  * Test application for the RandomNumberFactory random number generator.
  * This verifies that the random numbers have the expected
@@ -12,16 +13,12 @@ import java.util.Arrays;
  * For more information on testing random number generators, see
  * chapter 10 of Beautiful Testing by Tim Riley and Adam Goucher.
  *
- * @author Todd Cook
- * @author John D. Cook
- * @since 8/21/11 10:32 PM
- */
-
-/**
- * @author todd
- * @since 9/6/11 10:32 PM
+ * @author Todd Cook - Java port, refactoring, unit tests
+ * @author John D. Cook - C# version, SimpleRNG
+ * @since 8/21/11
  */
 public class RandomNumberFactoryTest {
+
     @Test
     public void createFromEnum() {
         RandomNumberFactory rnf =
@@ -45,7 +42,6 @@ public class RandomNumberFactoryTest {
         rnf.setSeedFromSystemTime();
         System.out.println(rnf.getLong());
         System.out.println(rnf.getUInt());
-
     }
 
     /**

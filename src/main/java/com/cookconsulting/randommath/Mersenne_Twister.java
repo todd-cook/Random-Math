@@ -1,12 +1,16 @@
 package com.cookconsulting.randommath;
 
+import java.io.Serializable;
+
 /**
  * Wrapper class for Mersenne_Twister
  *
  * @author todd
  * @since 9/6/11 10:03 PM
  */
-public class Mersenne_Twister implements RandomNumberGenerator {
+public class Mersenne_Twister implements RandomNumberGenerator, Serializable {
+
+    private static final long serialVersionUID = 2677482389850748000L;
 
     private ec.util.MersenneTwister mersenneTwister = new ec.util.MersenneTwister();
 

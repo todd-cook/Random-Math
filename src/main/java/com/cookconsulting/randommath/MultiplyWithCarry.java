@@ -1,5 +1,7 @@
 package com.cookconsulting.randommath;
 
+import java.io.Serializable;
+
 /**
  * a simple random number generator based on
  * George Marsaglia's MWC (multiply with carry) generator.
@@ -7,11 +9,13 @@ package com.cookconsulting.randommath;
  * series of random number generator tests.
  * <p/>
  *
- * @author Todd Cook
- * @author John D. Cook
+ * @author Todd Cook - Java port, refactoring
+ * @author John D. Cook - C# version
  * @since 8/21/11
  */
-public class MultiplyWithCarry implements RandomNumberGenerator {
+public class MultiplyWithCarry implements RandomNumberGenerator, Serializable {
+
+    private static final long serialVersionUID = -2661046007335935932L;
 
     private UInt m_w;
     private UInt m_z;

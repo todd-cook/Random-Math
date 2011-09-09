@@ -3,8 +3,8 @@ package com.cookconsulting.randommath;
 /**
  * Interface for plugging in Random Number Generators into the Random Number Factory
  *
- * @author todd
- * @since 9/6/11 9:42 PM
+ * @author Todd Cook
+ * @since 9/4/11
  */
 public interface RandomNumberGenerator {
 

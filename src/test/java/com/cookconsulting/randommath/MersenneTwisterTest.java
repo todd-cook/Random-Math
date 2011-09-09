@@ -11,9 +11,9 @@ import org.junit.Test;
  * For more information on testing random number generators, see
  * chapter 10 of Beautiful Testing by Tim Riley and Adam Goucher.
  *
- * @author Todd Cook
- * @author John D. Cook
- * @since 8/21/11 10:32 PM
+ * @author Todd Cook - Java port, refactoring, unit tests
+ * @author John D. Cook - C# version, SimpleRNG
+ * @since 8/21/11
  */
 public class MersenneTwisterTest extends RandomNumberFactoryTest {
 
