@@ -1,24 +1,52 @@
 package com.cookconsulting.randommath;
 
+import org.junit.Test;
+
+import java.util.Arrays;
 /**
- *  Test application for the SimpleRNG random number generator.
- *  This verifies that the random numbers have the expected
- *  distribution using a standard statistical test.
- *  Unfortunately the test is more complicated than the generator itself.
- *
- *  For more information on testing random number generators, see
- *  chapter 10 of Beautiful Testing by Tim Riley and Adam Goucher.
+ * Test application for the RandomNumberFactory random number generator.
+ * This verifies that the random numbers have the expected
+ * distribution using a standard statistical test.
+ * Unfortunately the test is more complicated than the generator itself.
+ * <p/>
+ * For more information on testing random number generators, see
+ * chapter 10 of Beautiful Testing by Tim Riley and Adam Goucher.
  *
  * @author Todd Cook
  * @author John D. Cook
  * @since 8/21/11 10:32 PM
  */
 
-import org.junit.Test;
+/**
+ * @author todd
+ * @since 9/6/11 10:32 PM
+ */
+public class RandomNumberFactoryTest {
+    @Test
+    public void createFromEnum() {
+        RandomNumberFactory rnf =
+            new RandomNumberFactory(RandomNumberAlgorithm.MULTIPLY_WITH_CARRY);
+        rnf.setSeedFromSystemTime();
+        System.out.println(rnf.getLong());
+    }
 
-import java.util.Arrays;
+    @Test
+    public void createFromEnum2() {
+        RandomNumberFactory rnf =
+            new RandomNumberFactory(RandomNumberAlgorithm.MERSENNE_TWISTER);
+        rnf.setSeedFromSystemTime();
+        System.out.println(rnf.getLong());
+    }
 
-public class SimpleRNGTest {
+    @Test
+    public void createFromEnum3() {
+        RandomNumberFactory rnf =
+            new RandomNumberFactory(RandomNumberAlgorithm.LINEAR_CONGRUENTIAL);
+        rnf.setSeedFromSystemTime();
+        System.out.println(rnf.getLong());
+        System.out.println(rnf.getUInt());
+
+    }
 
     /**
      * Kolmogorov-Smirnov test for distributions.  See Knuth volume 2, page 48-51 (third edition).
@@ -27,10 +55,7 @@ public class SimpleRNGTest {
      * the source wouldn't be random enough!  If the test were to fail more frequently,
      * the most likely explanation would be a bug in the code.
      */
-    @Test
-    public void KSTest() {
-
-        SimpleRNG.SetSeedFromSystemTime();
+    public void kSTest(RandomNumberFactory rnf) {
 
         int numReps = 1000;
         double failureProbability = 0.001; // probability of test failing with normal input
@@ -38,7 +63,7 @@ public class SimpleRNGTest {
         double[] samples = new double[numReps];
 
         for (j = 0; j != numReps; ++j) {
-            samples[j] = SimpleRNG.GetUniform();
+            samples[j] = rnf.getUniform();
         }
 
         Arrays.sort(samples);
@@ -98,7 +123,7 @@ public class SimpleRNGTest {
     }
 
     // Convenience function for TestDistributions()
-    static void PrintResults(String name,
+    public void PrintResults(String name,
                              double expectedMean,
                              double expectedVariance,
                              double computedMean,
@@ -118,105 +143,59 @@ public class SimpleRNGTest {
      * <p/>
      * Test the derived distributions by looking at their means and variances.
      */
-    @Test
-    public void TestDistributions() {
+    public void TestDistributions(RandomNumberFactory rnf) {
+
         final int numSamples = 100000;
         double mean, variance, stdev, shape, scale, degreesOfFreedom;
-        RunningStat rs = new RunningStat();
+        RunningStats rs = new RunningStats();
 
         // Gamma distribution
-        rs.Clear();
+        rs.clear();
         shape = 10;
         scale = 2;
         for (int i = 0; i < numSamples; ++i) {
-            rs.Push(SimpleRNG.GetGamma(shape, scale));
+            rs.push(rnf.getGamma(shape, scale));
         }
-        PrintResults("gamma", shape * scale, shape * scale * scale, rs.Mean(), rs.Variance());
+        PrintResults("gamma", shape * scale, shape * scale * scale, rs.mean(), rs.variance());
 
         // Normal distribution
-        rs.Clear();
+        rs.clear();
         mean = 2;
         stdev = 5;
         for (int i = 0; i < numSamples; ++i) {
-            rs.Push(SimpleRNG.GetNormal(2, 5));
+            rs.push(rnf.getNormal(2, 5));
         }
-        PrintResults("normal", mean, stdev * stdev, rs.Mean(), rs.Variance());
+        PrintResults("normal", mean, stdev * stdev, rs.mean(), rs.variance());
 
         // Student t distribution
-        rs.Clear();
+        rs.clear();
         degreesOfFreedom = 6;
         for (int i = 0; i < numSamples; ++i) {
-            rs.Push(SimpleRNG.GetStudentT(6));
+            rs.push(rnf.getStudentT(6));
         }
         PrintResults("Student t", 0, degreesOfFreedom / (degreesOfFreedom - 2.0),
-                     rs.Mean(), rs.Variance());
+                     rs.mean(), rs.variance());
 
         // Weibull distribution
-        rs.Clear();
+        rs.clear();
         shape = 2;
         scale = 3;
         mean = 3 * Math.sqrt(Math.PI) / 2;
         variance = 9 * (1 - Math.PI / 4);
         for (int i = 0; i < numSamples; ++i) {
-            rs.Push(SimpleRNG.GetWeibull(shape, scale));
+            rs.push(rnf.getWeibull(shape, scale));
         }
-        PrintResults("Weibull", mean, variance, rs.Mean(), rs.Variance());
+        PrintResults("Weibull", mean, variance, rs.mean(), rs.variance());
 
         // Beta distribution
-        rs.Clear();
+        rs.clear();
         double a = 7, b = 2;
         mean = a / (a + b);
         variance = mean * (1 - mean) / (a + b + 1);
         for (int i = 0; i < numSamples; ++i) {
-            rs.Push(SimpleRNG.GetBeta(a, b));
+            rs.push(rnf.getBeta(a, b));
         }
-        PrintResults("Beta", mean, variance, rs.Mean(), rs.Variance());
-    }
-}
-
-class RunningStat {
-    int m_n;
-    double m_oldM, m_newM, m_oldS, m_newS;
-
-    public RunningStat() {
-        m_n = 0;
+        PrintResults("Beta", mean, variance, rs.mean(), rs.variance());
     }
 
-    public void Clear() {
-        m_n = 0;
-    }
-
-    public void Push(double x) {
-        m_n++;
-
-        // See Knuth TAOCP vol 2, 3rd edition, page 232
-        if (m_n == 1) {
-            m_oldM = m_newM = x;
-            m_oldS = 0.0;
-        }
-        else {
-            m_newM = m_oldM + (x - m_oldM) / m_n;
-            m_newS = m_oldS + (x - m_oldM) * (x - m_newM);
-
-            // set up for next iteration
-            m_oldM = m_newM;
-            m_oldS = m_newS;
-        }
-    }
-
-    public int NumDataValues() {
-        return m_n;
-    }
-
-    public double Mean() {
-        return (m_n > 0) ? m_newM : 0.0;
-    }
-
-    public double Variance() {
-        return ((m_n > 1) ? m_newS / (m_n - 1) : 0.0);
-    }
-
-    public double StandardDeviation() {
-        return Math.sqrt(Variance());
-    }
 }
