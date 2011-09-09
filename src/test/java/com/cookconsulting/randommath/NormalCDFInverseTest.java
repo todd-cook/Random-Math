@@ -7,11 +7,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-
 /**
  * @author Todd Cook
  * @since 8/5/11 11:57 PM
- *
  */
 public class NormalCDFInverseTest {
 

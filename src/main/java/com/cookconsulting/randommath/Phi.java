@@ -1,22 +1,24 @@
 package com.cookconsulting.randommath;
 
 /**
- *
+ * Phi: in probability theory is the probability density function of the normal distribution.
+ * See: Abramowitz and Stegun: Handbook of Mathematical Functions
+ * http://people.math.sfu.ca/~cbm/aands/
  * @author Todd Cook
- * @since 8/21/11 10:16 PM
  * @author Greg Hewgill
  * @author John D Cook
+ * @since 8/21/11 10:16 PM
  */
 public class Phi {
-    public static double phi(double x) {
-        // constants
-        final double a1 = 0.254829592;
-        final double a2 = -0.284496736;
-        final double a3 = 1.421413741;
-        final double a4 = -1.453152027;
-        final double a5 = 1.061405429;
-        final double p = 0.3275911;
 
+    private static final double a1 = 0.254829592;
+    private static final double a2 = -0.284496736;
+    private static final double a3 = 1.421413741;
+    private static final double a4 = -1.453152027;
+    private static final double a5 = 1.061405429;
+    private static final double p = 0.3275911;
+
+    public static double phi(double x) {
         // Save the sign of x
         double sign = 1;
         if (x < 0) {

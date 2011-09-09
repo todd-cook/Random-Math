@@ -36,6 +36,7 @@ public class ErfTest {
          */
 
         for (int ii = 0; ii < seeds.size(); ii++) {
+            System.out.println(Erf.erf(seeds.get(ii)));
             error = Math.abs(results.get(ii) - Erf.erf(seeds.get(ii)));
             if (error > MAX_ERROR) {
                 MAX_ERROR = error;
@@ -43,5 +44,19 @@ public class ErfTest {
             System.out.println("erf: Maximum error: " + MAX_ERROR);
             assertTrue(MAX_ERROR < 1e-6);
         }
+
+        /*
+       for (int ii = 0; ii < seeds.size(); ii++) {
+           System.out.println(  Erf.erf2(seeds.get(ii) ));
+                   error = Math.abs(results.get(ii) - Erf.erf2(seeds.get(ii)));
+                   if (error > MAX_ERROR) {
+                       MAX_ERROR = error;
+                   }
+                   System.out.println("erf2: Maximum error: " + MAX_ERROR);
+                   assertTrue(MAX_ERROR < 1e-6);
+               }
+
+        */
+
     }
 }
