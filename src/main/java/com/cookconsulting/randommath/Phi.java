@@ -4,6 +4,7 @@ package com.cookconsulting.randommath;
  * Phi: in probability theory is the probability density function of the normal distribution.
  * See: Abramowitz and Stegun: Handbook of Mathematical Functions
  * http://people.math.sfu.ca/~cbm/aands/
+ *
  * @author Todd Cook
  * @author Greg Hewgill
  * @author John D Cook
