@@ -1,9 +1,8 @@
 Random-Math
 ============
 
-Random-Math is a packaged collection of math functions for numerical methods,
-random number generators, and statistical analysis. 
-
+Random-Math is a packaged collection of math functions and random number generators for numerical
+methods and statistical analysis.
 
 Features
 --------
@@ -20,9 +19,24 @@ Random-Math provides the following functions:
 
 Random Number Generation:
 
-Mersenne Twister (Java)
-more to come...
+Multiply With Carry
+Mersenne Twister
+Linear Congruential
 
+Probability Distributions:
+
+- Uniform
+- Normal
+- Exponential
+- Gamma
+- Chi Square
+- Inverse Gamma
+- Weibull
+- Cauchy
+- Student T
+- Laplace
+- Log Normal
+- Beta
 
 License
 -------
@@ -33,6 +47,4 @@ BSD License unless previously licensed source notes otherwise.
 Usage
 -----
 
-See the unit test source code for examples of usage and the output for
-statistics on accuracy.
-
+See the unit test source code for examples of usage and the output for statistics on accuracy.
