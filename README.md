@@ -19,9 +19,9 @@ Random-Math provides the following functions:
 
 Random Number Generation:
 
-Multiply With Carry
-Mersenne Twister
-Linear Congruential
+- Multiply With Carry
+- Mersenne Twister
+- Linear Congruential
 
 Probability Distributions:
 
@@ -42,7 +42,6 @@ License
 -------
 
 BSD License unless previously licensed source notes otherwise.
-
 
 Usage
 -----
