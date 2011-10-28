@@ -9,18 +9,19 @@ package com.cookconsulting.randommath;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
 
 public class Expm1Test {
 
     @Test
     public void testExpm1() {
 
-        double MAX_ERROR = 0.0;
-        double error = 0d;
+        double absolute_error = 0d;
+        double max_absolute_error = 0d;
+        double relative_error = 0d;
+        double max_relative_error = 0d;
         List<Double> seeds = Arrays.asList(-1d,
                                            0.0,
                                            1e-5 - 1e-8,
@@ -41,12 +42,16 @@ public class Expm1Test {
          */
 
         for (int ii = 0; ii < seeds.size(); ii++) {
-            error = Math.abs(results.get(ii) - Expm1.expm1(seeds.get(ii)));
-            if (error > MAX_ERROR) {
-                MAX_ERROR = error;
+            absolute_error = Math.abs(results.get(ii) - Expm1.expm1(seeds.get(ii)));
+            if (results.get(ii) != 0) {
+                relative_error = new BigDecimal(absolute_error).divide(
+                    new BigDecimal(results.get(ii).toString()),
+                    BigDecimal.ROUND_HALF_EVEN).doubleValue();
             }
-            System.out.println("Expm1: Maximum error: " + MAX_ERROR);
-            assertTrue(MAX_ERROR < 1e-6);
+            max_absolute_error = Math.max(absolute_error, max_absolute_error);
+            max_relative_error = Math.max(relative_error, max_relative_error);
         }
+        System.out.println("Expm1: max relative error: " + max_relative_error +
+                               " max absolute error: " + max_absolute_error);
     }
 }

@@ -50,24 +50,25 @@ public class LogGammaTest {
          *  62.57558682105085
          */
 
-        double worst_relative_error = 0.0;
+        double max_relative_error = 0.0;
         double computed = 0d;
         double absolute_error = 0d;
         double relative_error = 0d;
+        double max_absolute_error = 0.0;
 
         for (int ii = 0; ii < seeds.size(); ii++) {
             computed = Gamma.logGamma(seeds.get(ii));
             absolute_error = Math.abs(computed - results.get(ii));
             relative_error = absolute_error / results.get(ii);
-
-            if (relative_error > worst_relative_error) {
-                worst_relative_error = relative_error;
-            }
-            System.out.println("LogGamma: relative error: " + relative_error);
-            System.out.println("LogGamma(" + seeds.get(ii) + ") computed as: " + computed +
-                                   " but exact value is: " + results.get(ii));
-            assertTrue(worst_relative_error < 1e-10);
+            max_relative_error = Math.max(relative_error, max_relative_error);
+            max_absolute_error = Math.max(absolute_error, max_absolute_error);
+            //System.out.println("LogGamma(" + seeds.get(ii) + ") computed as: " + computed +
+            //                       " but exact value is: " + results.get(ii));
+            assertTrue(max_relative_error < 1e-10);
         }
+        System.out.println("LogGamma: max relative error: " + max_relative_error +
+                               " max absolute error: " + max_absolute_error);
+
     }
 }
 

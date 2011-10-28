@@ -56,23 +56,24 @@ public class GammaTest {
          *  1.490373807233864E11
          */
 
-        double worst_relative_error = 0.0;
+        double max_relative_error = 0.0;
         double computed = 0d;
         double absolute_error = 0d;
         double relative_error = 0d;
+        double max_absolute_error = 0d;
 
         for (int ii = 0; ii < seeds.size(); ii++) {
             computed = Gamma.gamma(seeds.get(ii));
             absolute_error = Math.abs(computed - results.get(ii));
             relative_error = absolute_error / results.get(ii);
-
-            if (relative_error > worst_relative_error) {
-                worst_relative_error = relative_error;
-            }
-            System.out.println("Gamma: relative error: " + relative_error);
-            System.out.println("Gamma(" + seeds.get(ii) + ") computed as: " + computed +
-                                   " but exact value is: " + results.get(ii));
-            assertTrue(worst_relative_error < 1e-6);
+            max_absolute_error = Math.max(absolute_error, max_absolute_error);
+            max_relative_error = Math.max(relative_error, max_relative_error);
+            //System.out.println("Gamma: relative error: " + relative_error);
+            //System.out.println("Gamma(" + seeds.get(ii) + ") computed as: " + computed +
+            //                       " but exact value is: " + results.get(ii));
+            assertTrue(max_relative_error < 1e-6);
         }
+        System.out.println("Gamma: max relative error: " + max_relative_error +
+                               " max absolute error: " + max_absolute_error);
     }
 }

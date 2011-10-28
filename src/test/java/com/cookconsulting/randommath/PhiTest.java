@@ -19,8 +19,10 @@ public class PhiTest {
     @Test
     public void testPhi() {
 
-        double MAX_ERROR = 0.0;
-        double error = 0d;
+        double absolute_error = 0d;
+        double max_absolute_error = 0d;
+        double relative_error = 0d;
+        double max_relative_error = 0d;
         List<Double> seeds = Arrays.asList(-3d,
                                            -1d,
                                            0.0,
@@ -44,12 +46,13 @@ public class PhiTest {
          */
 
         for (int ii = 0; ii < seeds.size(); ii++) {
-            error = Math.abs(results.get(ii) - Phi.phi(seeds.get(ii)));
-            if (error > MAX_ERROR) {
-                MAX_ERROR = error;
-            }
-            System.out.println("Phi: Maximum error: " + MAX_ERROR);
-            assertTrue(MAX_ERROR < 1e-6);
+            absolute_error = Math.abs(results.get(ii) - Phi.phi(seeds.get(ii)));
+            relative_error = absolute_error / results.get(ii);
+            max_absolute_error = Math.max(absolute_error, max_absolute_error);
+            max_relative_error = Math.max(relative_error, max_relative_error);
+            assertTrue(max_absolute_error < 1e-6);
         }
+        System.out.println("Phi: max relative error: " + max_relative_error +
+                               " max absolute error: " + max_absolute_error);
     }
 }

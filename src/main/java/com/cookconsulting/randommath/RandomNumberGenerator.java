@@ -2,9 +2,10 @@ package com.cookconsulting.randommath;
 
 /**
  * Interface for plugging in Random Number Generators into the Random Number Factory
+ * Only a subset of the methods of java.util.Random are necessary
  *
  * @author Todd Cook
- * @since 9/4/11
+ * @since 9/4/2011
  */
 public interface RandomNumberGenerator {
 

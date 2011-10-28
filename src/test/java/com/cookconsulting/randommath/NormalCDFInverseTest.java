@@ -17,8 +17,10 @@ public class NormalCDFInverseTest {
     @Test
     public void testNormalCDFInverse() {
 
-        double MAX_ERROR = 0.0;
-        double error = 0d;
+        double max_absolute_error = 0d;
+        double absolute_error = 0d;
+        double relative_error = 0d;
+        double max_relative_error = 0d;
         List<Double> seeds = Arrays.asList(0.0000001,
                                            0.00001,
                                            0.001,
@@ -74,12 +76,13 @@ public class NormalCDFInverseTest {
          */
 
         for (int ii = 0; ii < seeds.size(); ii++) {
-            error = Math.abs(results.get(ii) - NormalCDFInverse.normalCDFInverse(seeds.get(ii)));
-            if (error > MAX_ERROR) {
-                MAX_ERROR = error;
-            }
-            System.out.println("NormalCDFInverseTest: Maximum error: " + MAX_ERROR);
-            assertTrue(MAX_ERROR < 1e-3);
+            absolute_error = Math.abs(results.get(ii) - NormalCDFInverse.normalCDFInverse(seeds.get(ii)));
+            relative_error = absolute_error / results.get(ii);
+            max_relative_error = Math.max(max_relative_error, relative_error);
+            max_absolute_error = Math.max(absolute_error, max_absolute_error);
+            assertTrue(max_absolute_error < 1e-3);
         }
+        System.out.println("NormalCDFInverse: max relative error: " + max_relative_error +
+                               " max absolute error: " + max_absolute_error);
     }
 }

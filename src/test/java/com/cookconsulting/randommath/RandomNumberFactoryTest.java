@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Test application for the RandomNumberFactory random number generator.
  * This verifies that the random numbers have the expected
@@ -24,7 +26,7 @@ public class RandomNumberFactoryTest {
         RandomNumberFactory rnf =
             new RandomNumberFactory(RandomNumberAlgorithm.MULTIPLY_WITH_CARRY);
         rnf.setSeedFromSystemTime();
-        System.out.println(rnf.getLong());
+        assertTrue((Long) rnf.getLong() instanceof Long);
     }
 
     @Test
@@ -32,7 +34,7 @@ public class RandomNumberFactoryTest {
         RandomNumberFactory rnf =
             new RandomNumberFactory(RandomNumberAlgorithm.MERSENNE_TWISTER);
         rnf.setSeedFromSystemTime();
-        System.out.println(rnf.getLong());
+        assertTrue((Long) rnf.getLong() instanceof Long);
     }
 
     @Test
@@ -40,8 +42,8 @@ public class RandomNumberFactoryTest {
         RandomNumberFactory rnf =
             new RandomNumberFactory(RandomNumberAlgorithm.LINEAR_CONGRUENTIAL);
         rnf.setSeedFromSystemTime();
-        System.out.println(rnf.getLong());
-        System.out.println(rnf.getUInt());
+        assertTrue((Long) rnf.getLong() instanceof Long);
+        assertTrue((Long) rnf.getUInt() <= UInt.MAX_VALUE);
     }
 
     /**

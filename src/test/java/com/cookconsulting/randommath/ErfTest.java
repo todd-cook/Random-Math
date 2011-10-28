@@ -8,6 +8,7 @@ package com.cookconsulting.randommath;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,8 +19,10 @@ public class ErfTest {
     @Test
     public void testErf() {
 
-        double MAX_ERROR = 0.0;
-        double error = 0d;
+        double absolute_error = 0d;
+        double max_absolute_error = 0d;
+        double relative_error = 0d;
+        double max_relative_error = 0d;
         List<Double> seeds = Arrays.asList(-3d, -1d, 0.0, 0.5, 2.1);
         List<Double> results = Arrays.asList(-0.999977909503,
                                              -0.842700792950,
@@ -35,28 +38,23 @@ public class ErfTest {
          *   0.997020395440758
          */
 
+        // This section is rather predictable and could be easily extracted using a functional
+        // language such as scala, where methods can be first-class objects
+        // for now we will leave such as an exercise for the reader
         for (int ii = 0; ii < seeds.size(); ii++) {
-            System.out.println(Erf.erf(seeds.get(ii)));
-            error = Math.abs(results.get(ii) - Erf.erf(seeds.get(ii)));
-            if (error > MAX_ERROR) {
-                MAX_ERROR = error;
+            //System.out.println(Erf.erf(seeds.get(ii)));
+            //System.out.println("erf() error: " + error);
+            absolute_error = Math.abs(results.get(ii) - Erf.erf(seeds.get(ii)));
+            if (results.get(ii) != 0) {
+                relative_error = new BigDecimal(absolute_error).divide(
+                    new BigDecimal(results.get(ii).toString()),
+                    BigDecimal.ROUND_HALF_EVEN).doubleValue();
             }
-            System.out.println("erf: Maximum error: " + MAX_ERROR);
-            assertTrue(MAX_ERROR < 1e-6);
+            max_absolute_error = Math.max(absolute_error, max_absolute_error);
+            max_relative_error = Math.max(relative_error, max_relative_error);
+            assertTrue(max_absolute_error < 1e-6);
         }
-
-        /*
-       for (int ii = 0; ii < seeds.size(); ii++) {
-           System.out.println(  Erf.erf2(seeds.get(ii) ));
-                   error = Math.abs(results.get(ii) - Erf.erf2(seeds.get(ii)));
-                   if (error > MAX_ERROR) {
-                       MAX_ERROR = error;
-                   }
-                   System.out.println("erf2: Maximum error: " + MAX_ERROR);
-                   assertTrue(MAX_ERROR < 1e-6);
-               }
-
-        */
-
+        System.out.println("erf: max relative error: " + max_relative_error +
+                               " max absolute error: " + max_absolute_error);
     }
 }

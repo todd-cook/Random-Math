@@ -31,29 +31,32 @@ public class LogFactorialTest {
     public void testLogFactorial() {
         List<Integer> seeds = Arrays.asList(0, 1, 10, 100, 1000, 10000);
 
-        for (int i = 0; i < seeds.size(); i++) {
-            int seed = seeds.get(i);
+        double max_absolute_error = 0d;
+        double max_relative_error = 0d;
+        double relative_error = 0d;
+        double absolute_error = 0d;
 
-            System.out.println("seed: " + seed);
-            System.out.println("LogFactorial:" + LogFactorial.logFactorial(seed));
-            System.out.println("factorial(" + seed + ") " + factorial(seed));
-        }
-
-        double maxError = 0d;
-        double error = 0d;
         for (int ii = 0; ii < seeds.size(); ii++) {
             int seed = seeds.get(ii);
-
-            error = Math.abs(
+            //System.out.println("seed: " + seed);
+            //System.out.println("LogFactorial:" + LogFactorial.logFactorial(seed));
+            //System.out.println("factorial(" + seed + ") " + factorial(seed));
+            absolute_error = Math.abs(
                 ((convertToNaturalLog(log10(factorial(seed), 18)).subtract(
                     new BigDecimal(LogFactorial.logFactorial(seed)))).doubleValue()));
 
-            if (error > maxError) {
-                maxError = error;
+            if (LogFactorial.logFactorial(seed) != 0) {
+                relative_error = new BigDecimal(absolute_error).divide(
+                    new BigDecimal(LogFactorial.logFactorial(seed)),
+                    BigDecimal.ROUND_CEILING // Note this rounding mode never decreases the calculated value.
+                ).doubleValue();
             }
-            System.out.println("Seed: " + seed + " LogFactorial: Worst absolute error: " + maxError);
-            assertTrue(maxError < 1e-6);
+            max_absolute_error = Math.max(absolute_error, max_absolute_error);
+            max_relative_error = Math.max(relative_error, max_relative_error);
+            assertTrue(max_absolute_error < 1e-6);
         }
+        System.out.println("LogFactorial: max relative error: " + max_relative_error +
+                               " max absolute error: " + max_absolute_error);
     }
 
     /**
