@@ -34,7 +34,7 @@ import java.io.Serializable;
  * Java doesn't have native support for unsigned integers, however we can mimic the properties.
  * Unsigned integers are commonly used in network programming and random number generation.
  * <p/>
- * The method on this class are rather ugly, see the scala implementation for a prettier version.
+ * The method on this class are rather ugly, a scala implementation would be cleaner.
  *
  * @author Todd Cook
  * @since 9/4/2011
@@ -94,7 +94,7 @@ public final class UInt implements Serializable {
     }
 
     public UInt divide(long divisor) {
-        return new UInt(this.value() / divisor);
+        return new UInt(this.longValue() / divisor);
     }
 
     public UInt add(long other) {
@@ -102,7 +102,7 @@ public final class UInt implements Serializable {
     }
 
     public UInt add(UInt other) {
-        long tmp = this.value() + other.value();
+        long tmp = this.longValue() + other.longValue();
         while (tmp > MAX_VALUE) {
             tmp = tmp - MAX_VALUE;
             tmp = tmp - 1;
@@ -111,16 +111,20 @@ public final class UInt implements Serializable {
         return new UInt(tmp);
     }
 
+    public UInt subtract(Long myLong) {
+        return this.subtract(new UInt(myLong));
+    }
+
     public UInt subtract(UInt other) {
-        long tmp = this.value() - other.value();
+        long tmp = this.longValue() - other.longValue();
         if (tmp < 0) {
-            tmp = MAX_VALUE - tmp;
+            tmp = MAX_VALUE + tmp + 1;
         }
         return new UInt(tmp);
     }
 
     public UInt multiply(UInt multiplier) {
-        return multiply(multiplier.value());
+        return multiply(multiplier.longValue());
     }
 
     public UInt multiply(long multiplier) {
@@ -133,7 +137,8 @@ public final class UInt implements Serializable {
         return new UInt(tmp);
     }
 
-    public long value() {
+
+    public long longValue() {
         return mValue;
     }
 

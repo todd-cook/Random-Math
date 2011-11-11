@@ -18,4 +18,8 @@ public interface RandomNumberGenerator {
     long getLong();
 
     long getUInt();
+
+    int nextInt();
+
+    int nextInt(int limit);
 }
