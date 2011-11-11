@@ -16,7 +16,13 @@ Random-Math provides the following functions:
 - Log Gamma (max relative error: 2.3083 E-12, max absolute error: 4.9155 E-11)
 - exp(x) - 1 (for small x) (max relative error: 1.6633 E-11, max absolute error: 3.3306 E-16)
 - log(n!) Log Factorial (max relative error: 1.6633 E-11, max absolute error: 3.3306 E-16)
-(see unit tests for sample data and expected results)
+- Chi Square Table generator
+- (see unit tests for sample data and expected results)
+
+Utility Classes:
+
+- Frequency Map (counting categories made easy)
+- RunningStats (calculating mean, standard deviation, variance, harmonic mean, geometric mean)
 
 Random Number Generation:
 
@@ -42,7 +48,7 @@ Probability Distributions:
 License
 -------
 
-BSD License unless previously licensed source notes otherwise.
+BSD License unless previously licensed source indicates otherwise.
 
 Usage
 -----
