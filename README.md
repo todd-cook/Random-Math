@@ -1,8 +1,8 @@
 Random-Math
 ============
 
-Random-Math is a packaged collection of math functions and random number generators for numerical
-methods and statistical analysis.
+Random-Math is a packaged collection of math functions and random number generators for
+seminumerical methods and statistical analysis.
 
 Features
 --------
