@@ -43,7 +43,6 @@ public class RunningStatsTest {
         try {
             RunningStats rs = new RunningStats();
             rs.mean();
-            rs.geometricMean();
             rs.harmonicMean();
             rs.standardDeviation();
             rs.numberDataValues();
@@ -73,22 +72,5 @@ public class RunningStatsTest {
         rs.push(2);
         rs.push(4);
         assertTrue(rs.harmonicMean() == 1.7142857142857142d);
-    }
-
-    @Test
-    public void testGeometricMean1() {
-        RunningStats rs = new RunningStats();
-        rs.push(2);
-        rs.push(8);
-        assertTrue(rs.geometricMean() == 4d);
-    }
-
-    @Test
-    public void testGeometricMean2() {
-        RunningStats rs = new RunningStats();
-        rs.push(1);
-        rs.push(4);
-        rs.push(1 / 32d);
-        assertTrue(rs.geometricMean() == 0.5d);
     }
 }

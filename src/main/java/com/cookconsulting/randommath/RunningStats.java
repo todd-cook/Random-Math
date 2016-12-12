@@ -134,33 +134,6 @@ public class RunningStats implements Serializable {
     }
 
     /**
-     * Geometric mean; only applies to positive numbers
-     * NOTE: any values pushed into this class that are less than or equal to zero are ignored here.
-     * <p/>
-     * The geometric mean is more appropriate than the arithmetic mean for describing proportional
-     * growth, both exponential growth (constant proportional growth) and varying growth; in
-     * business the geometric mean of growth rates is known as the compound annual growth rate
-     * (CAGR). The geometric mean of growth over periods yields the equivalent constant growth
-     * rate that would yield the same final amount.
-     * <p/>
-     * In signal processing, spectral flatness, a measure of how flat or spiky a spectrum is,
-     * is defined as the ratio of the geometric mean of the power spectrum to its arithmetic mean.
-     * <p/>
-     * see http://en.wikipedia.org/wiki/Geometric_mean
-     *
-     * @return geometric mean or zero if uninitialized
-     */
-    public synchronized double geometricMean() {
-        if (mMax == null || mMin == null || mMin == 0) {
-            return 0;
-        }
-        BigDecimal min = new BigDecimal(mMin);
-        BigDecimal max = new BigDecimal(mMax);
-        BigDecimal base = min.multiply(max);
-        return pow(base, 1d / m_n.longValue()).doubleValue();
-    }
-
-    /**
      * Calculate power value using double value; since
      * X^(A+B)=X^A*X^B
      *
